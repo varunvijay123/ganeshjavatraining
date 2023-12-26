@@ -1,0 +1,26 @@
+git branch-- To check Branch Name
+
+git pull - To pull the updates --> Why this commonod
+
+how to change to our branch - Feature-me-122023-dev-vijay-hjone
+
+git checkout Feature-me-122023-dev-vijay-hjone
+
+Now get the latest commits of others
+
+git pull
+
+git status - to check for modified files
+
+to Add file to the staging 
+
+git add .
+
+Now commit files by adding comment
+
+git commit -m "HJOne with Provisioning enabled"
+
+
+send files to the remote
+git push
+
