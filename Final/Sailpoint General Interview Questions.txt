@@ -1,0 +1,295 @@
+1)  How many types of tasks
+	We have different types of tasks, 
+	WE have account aggregation task to aggregate accounts.
+	WE have groups aggregation task to aggregate groups.
+	also we do have perform maintenance task (PMT) with many available options, which runs for every 5 mins by Deafult.
+	we have Refresh task with many available options. 
+	Peform identity Reqeust Maintenance Task to scan the Access Requests.
+	we also have Prune identity Cube Task (PICT) to delete Identities without having any applicaton references.
+	
+	1.1 Can we make PMT to execute for every 10min/30min/whatever ?
+	Yeah we can make it to run for every 10min 
+	1.2 where do you configure?
+	We can schedule from Tasks Menu
+	1.3 What will be done by PMT?
+		--It will process background workflows
+		--Moves the campaign phase to different phase, if time period expires for that particular phases
+		--close campaigns(Certifications)
+		--Prune aged sailpoint objects such as taskresults, provisioningTransactions, syslog
+	1.4 What are Aged SailPoint Objects
+		--Objects which are older than Object Expiration value in IdentityIQ Configureation of Global Settings.
+	1.5 Where did you configure max days for TaskResults, provisioningTransactions and syslog?
+		--From the global settings using IdentityIQ configuration we can set the Object Expiraton. if we set TaskResults/provisioningTransactions/syslog to 100 Days, PM task will delete TaskResults/provisioningTransactions/syslog which are created gretet than 100 days.
+	
+2)  can you explain rules?
+	We have different types of rules available in the SailPoint such as 
+	preiterate rule, 
+	build map rule, 
+	customisaton rule, 
+	correlation rule, 
+	identity creation rule, 
+	manager correlation rule and
+	Post Iterate Rule.
+	Also we have certification Rules and workflow rules.
+
+3)  what is schema?
+	Schema is two types
+	Account Schema - List of attributes which represents Account Object is called Account Schema.
+	Groups Schema - List of attributes which represents Group Object is called Group Schema.
+4)  If you make any changes in target system will it get reflected in iiq?
+	Yeah it will reflect in identityIQ, How?
+	By using aggregation task all the updates will be loaded into SailPoint IdentityIQ.
+	
+5)  What is role mining?
+	Role mining is nothing but creation of rules using SailPont Role Mining Concept.
+	We have IT Role Mining to create IT Roles.
+	We have Bussiness Role Mining to create Bussiness Roles.
+	
+	5.1 How do you mine roles?
+	It is based on IdentityAttrbute. 
+	
+
+6)  How many ways we can create identities?
+	We can create identities in different ways
+	By Running Authoritative aggregation identites will be created in the SailPoint idenityIQ.
+	By using Create Identity Quick Link we can create.
+	By Using Self Service Registration as well we can create identities.
+	
+	We have other option as well but not good way of creating identities is, 
+	
+	When correlation fails uncorrelated identity cubes will be created in the system.
+	
+7)  Lifecycle events?
+	We have different Life Cycle Events
+	1. Joiner - an employee who is onboarding/joining the organisation.
+	2. Mover  - an employee who is changing Departments/change manager in the organisation.
+	3. Leaver - an employee who is offboarding/leaving the organisation.
+	4. Rehire - an employee who rejoing the same organisation is called Rehire.
+	
+	7.1 when life cycle events will trgger in SailPoint?
+	when we run refresh identity cube task with options "proces events" and "provisioining assignments" are enabled.
+
+	7.2 When will joiner life cycle event will trigger?
+	when an identitycube creates for the first time in the identityWarehouse, it will trigger the Joiner Life Cycle event in the next Identity Refresh Task.
+	mostly we use Joiner LIfe Cycle event to create Accounts on the Different Target Systems.
+	
+8) What is Authoritative Application
+   The  authoritative application is the main repository for employee information for your enterprise, for example a human resources application.
+   It is the data source from which majority of identity cubes are created.
+	
+9)  What is LCM?
+	LCM stands for Life Cycle Manager. 
+	A component in the SailPoint IdentityIQ, 
+	Life Cycle Module (LCM) provides Life cycle Events such as joiner,leaver, mover and rehire.
+	It also provides Manage Access and Self Service Management.
+
+
+10) What is connector?
+
+A connector is a software component used to connect to the target system.
+Ex: Delimited file connector, JDBC (java Database connectivity), Workday Connector, ACtive DIrectory, etc
+We have around 70+ connnectors in SailPoint idnetityIQ.
+
+Connector Types
+1. Not well Defined Connector (Disconnected Applications)
+	examples are Delimited connector , JDBC Connector, etc ............... 
+	-Schema is Empty - we have to manually create schema
+	-Provisioning Frame work - doesn't support. we have to mange manually 
+2. Well Defined connector (Connected Applications)
+	examples are Active Directory, LDAP, Workday,OpenLDAP  etc...... 
+	-Schema comes by default
+	-Provisioning Frame work by default
+
+11)  What is native Rules?
+    Rule which are responsible to make changes in the Target Application, Target Application Specific Rules.
+	For Example, In SailPoint We have Active Directory Connector which supports Native Rules.
+	we have after create rule, which will be invoked after account creation in Active Directory. 
+	In After Create Rule we can trigger powershell methods to execute on AD Side.
+12) How you import Entitlements in iiq?
+	We can import Entitlements in Sailpoint by using import option which is available in Entitlement Catalog.
+	
+	11.1 How do you create Entitlements in the SailPoint?
+	Using Group Aggregation task we can load Entitlements into the SailPoint IdentityIQ.
+	11.2 How do you create Entitlements in the Target System?
+	By Using "Add New Entitlement" Option in the Entitlement Catalog. Provisioing plan will generate and given to the "LCM Provisioning" workflow to create in the Target System.
+13) what is workflow
+	Workflows within IdentityIQ are called Bussiness Processes. Workflow consists of different steps which are responsilble for drive the provisioning plan with associated approvals and to complete the provisioning.
+14) How do you create custom Connector Or any unknow Question?
+	I didn't get chance to work on Custom Connector, if i get opportunity to work, i am happy to work on that item.
+15) what is the provisioning policy?
+	Provisioning Policy is nothing but a form, which provides the attributes which are mandatory to complete the Provisioning.
+	
+16) what is certifications? Why do we go for certifications?
+
+	Definiation : Reviewing user's access/entitlements is called certification(Access Review)
+	or 
+	Reviewing users entitlements is called certification (Access Review)
+	-->	To Review the user access.
+	16.1 Catagories of Certfication
+			1. Periodic Certifications (Based on Frequency Weekly, Monthly, Anually )
+			2. Contineous Certification (Always runs )
+	16.2 What are different types of Campaigns
+		We have different types of Certifications
+			1. Targeted Certification  
+			2. Manager Certification - Manger will review his direct reportees access wheather they have proper access or not? { Certifier/Reviewer = Manager }
+			3. Application Owner Certification - App Owner will review all the accounts from that application. { certifier/Reviewer = Application Owner}
+			4. Entitlement Owner Certification - Entitlement Owner Will review/certifiy the user access. { Certifier/Reviewer = Entitlement Owner} 
+			5. Advanced Certification - Allows for creation of custom certifications based on Groups or Populations. {Certifier = Group Owner} 
+			6. Role Membership Certification - Role Owner Will review/certifiy the user access. { Certifier = role Owner}
+			7. Account Group Permissions - To Review the permissions of an Account Group.
+17) Explain about Certification Life Cycle.
+	  Certification Life Cycle
+			  1. Generation 		: During Generation Cetifications will generate. we have to specify what to certify, when to certify and who should certify.
+			  2. Staging phase 		: This is a optional phase, We can enable or disable Staging Period. It allows us to preview or check certification.  
+			  3. Active phase 		: During Active phase, Certifier will review the access. If Certifier finds access is appropriate, he will approve the access. If certifier finds access is inappropriate, he will revoke the access. 
+			  4. challenge			: challenging the decision. This is optional phase. We didn't configure in our project. we can challeng the decision.
+			  5. Revocation phase/	
+				 Remediation Phase 	: Revocations will complete in Remediation phase.
+18) Explain about Active Phase in detail.
+		--> PreDelegation 	: Certifcation will be delegated to the another reviwer as part of certification generation.
+		--> Delegation   	: A Delegated person can review the access, once delegated person completes, certification will go to original Reviewer, Original Reviewer can take any decision. original review's decision is the final decision.
+								Even Access Review delegated still original reviewer can see certification items.
+		--> Reassignment 	: Once Access Review(Certification) reassigned original Reviewer can't take any decision. there will be no work item once certificaiton is reassigned. 			
+		-->	Escalation 		: When Origianl reviewer doesn't take any decision for number of days, that access review will be escalated as per the configuration. 
+			
+		Note:-Once certifier signoff you can't change your decision.
+19) Have you worked on Certification Rules?
+
+20) 
+
+21) Where will we use pre-delegation rule? Why do we use it?
+
+	Pre-Delegation Rule runs during the certification generation and pre-delegated to new certifier. 
+	It returns String.
+22) What is Exclusion Rule?
+
+23) In certification if something went wrong how will u recorrect it?
+	Once certification is generated SailPoint doesn't allow to make changes to the certification configuration. If we enable the staging phase we can cancel the campaign and generate a new campaign.
+
+24) If manager went into inactive position and he couldn't do his activities? How will u fix it?
+	We can reassign the Access Reviews to another person.
+	Or we can wait to escalation happen, then It escalates to managers manager automatically.
+	
+25) How do you use Build Map Rule?
+
+26) How many connector rules do u have used? or worked on it? For which applications u have used?
+
+27) What is pre-iterate rule? For which connector u will use? In which use case u have used?
+
+28) How you have done birth right Provisioning?
+
+29) Manager forgot his password, u got requset from him to reset the passsword. Then how will u fix it? How many ways are there?
+
+30) Difference between build map rule and customized rule?
+
+31) How will u do self certifications?
+
+32) provisioning policies- where, when we have to use?
+
+
+33) How the schema attribute is populated? If I have added two more attributes then how or where it will be populated?
+
+34) What is the importance of schema definition?
+It is a main step of integration.....
+
+
+35) How the data is reflecting in preview into the IIQ before aggregation?
+
+->I wanted to create a cerification not based on manager or anything based but based on attribute i have to create certification. How will u create it?
+
+By populations or  by groups we will create and we will apply certifications.
+
+->I wanted create certifications for some groups in that i wanted exclude some identities or groups  then how will do it?
+
+-> When we will go for advanced certifications?
+
+->In Email triggering , I need send email particular person not for superiors or for others except the particular person. How will u do it?
+
+->If employee is being in any department that time he should not get any emails or notifications. How will you fix it?
+
+-> How to refresh a particular Application?
+
+-> In AD what is SAMAccount?
+
+-> What is rouge account? What is the use of it?
+
+->What is the use of IIQ properties file?
+
+->Difference between LDAP server and JDBC?
+
+->Tell me about sailpoint architecture?
+
+->What is a role based access control?
+
+->Difference between hash map and hash table?
+
+->What is synchronizede?
+
+
+-> How many rules u have used?
+
+-> HOw to configure a workflow?
+
+->Difference between applicaion server and web server?
+
+-> what is identity correlation?
+
+-> What is a link? HOw can we implement a link?
+
+-> What is the use of IQ service?
+
+->hOW DO YOU EXECUTE RULES?
+
+-> Birth right provisioning?
+
+->Encapsulation in oops with real time example.
+
+-> Questions on String handling
+
+-> Write any rule in sailpoint.
+
+-> IIQ installation process.
+
+-> If u have troubleshoot how will u find a error?
+   Using loggers.. What  kind of logger u have used?
+
+-> How do u execute rules?
+
+->Explain about LCM events
+
+-> Why do we use IIQ service?
+  To access AD.
+
+
+Q) what is SPRight, Capability and Workgroup
+
+Right 		-	These rights control access on the SailPoint UI.
+SailPoint object name SPRight
+Capability 	-	We can define Capability as set of SPRights.
+SailPoint object name is Capability
+				viewAdminConsole has three rights (task, provisioning and environment)
+Workgroup	-	We can define Workgroup as set of Capabilites and set of identities.
+
+	
+
+
+
+To-DO
+1. Certifications 
+2. Provisioining Policy - HighJump
+3. Life Cycle Event Realtime Demo SDG
+
+Java
+1. Collections
+2. Strings
+3. JDBC Programme
+3. One Web Application
+
+Java Questions
+17) what is overloading and overriding?
+18) what is List?
+19) what is constructor?
+20) what is the difference between HashSet and LinkedHashSet
+21) What is the Deligation?
+12) what is DriverManager
+13) What is Connection 

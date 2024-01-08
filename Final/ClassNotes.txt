@@ -1,0 +1,412 @@
+Application onboarding
+-----------------------
+ Adding Different End Applications or Target System with IdentityIQ is called Application onboarding.
+ or 
+ Integrating Identity IQ with different Target Systems or End Applications is called application onboarding.
+ 
+ 
+ --> Two steps while onboarding(integrating) any application with Sailpoint IdentityIQ.
+		1. Creating Application definition  - It has application meta data and Schema details 
+		2. Aggregation - It aggregates account data into Sailpoint IdentityIQ.(It is furhtur 2 types. Account Aggregation and Account Group Aggregation)
+		
+	
+
+OOTB
+Full form - Out Of The Box
+The default configuration of the product is called OOTB Settings.
+
+what is customisation?
+When we overide OOTB configuration with our changes is called Customization.
+	
+connector ?
+
+A connector is a software component used to connect to the target system.
+Ex: Delimited file connector, JDBC (java Database connectivity), Workday Connector, ACtive DIrectory, etc
+We have around 70+ connnectors in SailPoint idnetityIQ.
+
+Connector Types
+---------------
+1. Not well Defined Connector
+	Delimited connector , JDBC Connector, etc ............... 
+	-Schema is Empty - we have to manually create schema
+	-Provisioning Frame work - doesn't support. we have to mange manually 
+2. Well Defined connector
+	Active Directory, LDAP, Workday,OpenLDAP - Direct etc...... 
+	-Schema comes by default
+	-Provisioning Frame work by default
+	
+	
+ What is Aggregation and Provisioning
+ ------------------------------------
+ Aggregation = Data Flow ---->End Applications ----> Sailpoint IdentityIQ
+ 
+ Provisioning = Data Flow ---->Sailpoint IdentityIQ ----> End Applications
+ 
+ 
+ Two Types of Applications
+ -------------------------
+ 1. Authoritative Applications                         2. Non Authoritative Applications
+    -Any App entire organisation data. 					  -Organisational users accounts
+	-Example: PeopleSoft Database							Example: CSV files (Financial Application)
+			  CSV Files												 Active Directory
+			  Workday Application									 PayRoll Application
+																	 
+																	 
+																	 
+																	 
+
+	
+	------------------------------------
+	
+How to UP Tomcat Server?
+	Go to installation directory?
+	run tomcat8w file at following location
+	E:\Apps\Tomcat 8.5\bin
+	click on start button.
+	else
+	Open Services application
+	click on run
+
+
+Schema
+1. Account Schema 2. Group Schema
+
+1. Account Schema : list of attributes which represents user accout is called Account Schema
+2. Group Schema : list of attributes which represents group is called Group Schema 
+
+Aggregation
+1. Account Aggregation : The process of loading accounts information is called Account aggregation.
+2. Group Aggregation : The process of loading groups information is called Group aggregation.
+
+	When "Managed" is specified on Schema,  that item will be pushed into Entitlement Catalog section.
+	When "Entitlement" is specified on Schema,  that item will be pushed to Identity Cube's Entitlements Tab. 
+	then we can used it for Certification and for other uses.
+
+
+Entitlement: SEt of permissons on the target system is called entitlement.
+
+
+what is multivalued in schema?
+Ans: If one of the schme attributes is holding multiple values, then that attributed will be marked as multivalued.  
+what is managed in schema?
+Ans: when an attribute is marked as the Managed in the application schema then that attribute will be promoted into Entitlement Catalog section.
+what is Entitlement in schema?
+Ans: when an attribute is marked as the Entitlement in the application schema then that attribute will be promoted to Identity cube's Entitlement Tab. 
+This we can use in different areas of SailPoint IIQ. For example we can certify these entitlements.
+
+
+Rules is all about Coding 
+we do write in Beanshell scripting 
+what is Beanshell scripting 
+this is Leightweight language, alomst similar to core java.(almost 95%)
+
+
+Extended IdentityAttributes Creation 
+
+Global Settings>Identity Mappings > Add new Attribute>Define mapping
+1. From debug page Configuration Objects>UIConfig-- identityViewAttributes 
+
+
+Financials application onboarding
+	
+What is Correlation?
+-------------------------
+Attaching users accounts to the existing identity cubes is called correlation.
+2 ways 	1. configuration based
+		2.	Rule Based
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Provisioning ?
+
+Process of adding entitlement to an identity on the target system is called provisioning.
+note: Entitlement = access/groups/permisson
+
+Deprovisioning?
+
+Process of removing entitlement to an identity on the target system is called Deprovisioning.
+
+
+Access Reuqest?
+It gives the tracking information for raised Request.
+
+MyWork-->Access Request
+
+Above access Access Request is in pending for manager approval (Workitem is in open state waiting for manager approval)
+MyWork --> Workitems
+
+
+Requester : The person who places the request.
+
+Requstiee : The person to whom raquest placed for.
+
+Connected Applications and Disconnected Applications
+
+Connector Types
+	1. Connected applications
+
+	connected Applications (this connector supports provison to the target System)
+	Example: LDAP, Active Directory, Salesfor
+	When you try to add an entitlement, connector adds entitlement automatically since it is connected application.
+	When you try to remove an entitlement, connector remove entitlement automcatically since its is connected application.
+
+
+	2. Disconnected Applications
+	Disconnected Applications (this connector doesn't upports provison to the target System)
+	Example: Delimeted File Connector
+	When you try to add an entitlement, connector can't add entitlement automatically since it is disconnected application. someone has to add entitlement manually.
+	When you try to remove an entitlement, connector can't remove entitlement automcatically since its is disconnected application.	someone has to remove entitlement manually.
+
+	Note: For disconnected applications, SailPoint IIQ will create a manual workitem. someone has to complete manual work item once entitlement add/remove completes in the source applicaiton.
+	
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------	
+> delete application PRISM
+Deleting Application PRISM
+Deleting ApplicationScorecard 402880e886a0fbc60186a11935bb01db
+> checkout Application TRAKK trakk.xml
+> checkout Application TRAKK trakkk.xml -clean=id,created,modified
+
+
+Groups, Populations and workgroups
+--------------------------------------
+Groups and populations are used to provide sets of identities to include in various activities
+We can do refresh only for members of a group or workgroup
+We can do certification for members of a group or workgroup
+We can also use as a report as well
+Group :
+Groups are based on single search crieteria.
+for example location, manger, status (single search criteria)
+
+Active Managers who are not Contractors in Asia-Pacific Region only - as this as 3 filters we can't create a group but we can create a population.
+Population:
+Populations are multiple search crieteria based set of identities.
+Active Managers who are not Contractors in Asia-Pacific Region only
+Differences betwenn groups and populations?
+roups are based on single search crieteria where as Populations are multiple search crieteria based .
+	
+Roles (Bundle) - RBAC (Role Based Access Control)
+--------------------------------------------------
+Roles(Bundles): Through roles, system entitlements can be grouped together and represent as a single unit.
+or
+set of Entitlements 
+or
+A role is a collection of permissions, and users receive permissions through the roles they have been assigned. 
+
+
+Why We need Roles?
+Ans. To automate provisioning process.
+
+
+By default, there are four different types of roles present in IDentity IQ.
+
+1. organisation roles
+2. Bussiness roles/Assigned Roles
+3. IT Roles/Detected roles
+4. Entitlement Roles
+
+
+1.	Organizational:
+----------------------------
+organize the roles in the IdentityIQ UI for easier management
+organisational roles is to create Folders.
+
+2.	Business(Assigned Role)
+----------------------------
+identify job functions or titles or other attributes by which users can be grouped
+3.	IT(Detected Role)
+----------------------------
+encapsulate sets of system entitlements
+4.	Entitlement(Detected Role)
+----------------------------
+represent individual system entitlements
+
+
+
+Business role (Assigned Role)
+-------------------
+Business role: assignable role (with an assignment rule) which can contain required and permitted roles 
+but do not contain direct entitlements
+
+-->generally represent job functions, titles, or responsibilities.
+Job Functions : GIS Mapping, Youtube Content Verify, 
+Bussiness_Role_GIS_Mapping
+Bussiness_Role_Youtube_Content_Verify
+BussinesRole_Manager
+BussinessRole_Supervisior
+Treasury Analyst” 
+“Accounts Payable Clerk”
+
+Business roles are assigned to users directly, 
+either automatically via attribute matching based on on things like job title or department, or via request.
+
+
+
+IT role (Detected Role)
+-------------------
+IT role: role with an entitlement profile which can be used for role detection and for provisioning;
+ these are not assignable by default and therefore contain no assignment rules
+ 
+ what is profiles ?
+ 
+ entitlements within an IT Role is called profile.
+ 
+-->IT Roles encapsulate sets of system entitlements. They are tied to actual permissions within an application
+ or target system.
+-->A user’s IT roles can be detected in IdentityIQ based on the entitlements that user has. 
+Access can also be provisioned in IdentityIQ via IT roles.
+
+-->IT roles are connected to business roles through the Required Roles and Permitted Roles.
+Required Roles
+---------------
+A business role’s Required Roles are the IT roles that an Identity must have when they are associated with that business role.
+Permitted Roles
+---------------
+A business role’s Permitted Roles are the IT roles that an Identity can have but is not required to have when assigned that business role
+
+
+What is RBAC?
+--------------
+RBAC - Role Based Access Control
+-One of the main goals of RBAC is to grant employees only the access they need to do their jobs, and to prevent them from having access that is not relevant to them
+
+Use Cases;
+->Role Provisioning 
+	We have raised manual Requet
+->Role Deprovisioning
+	We have raised manula Request
+->Automatic Provisioning 
+	We have to define Assignment Rule( Match List / Script / Rule /Filer)
+	Should run the Refresh Task with enabling following options
+	i. Refresh assigned, detected roles and promote additional entitlements - ONly assigns Bussines Role but dont provision
+	ii. Provision assignments - to provision entitlements
+	
+	
+	if status is contractor = we have to create PRISM Account, groups = user
+	if status is employees = we have to create PRISM Account , groups = user, manager
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CERTIFICATION = Access Review
+---------------
+user	=	not a risk entitlement, he can only look his account, dont have access to check others accounts
+manger	=	medium risk entitlement, he can look his sub ordinates accounts  
+super	= 	High Risk Entitlement, He can modify all accounts in the organisation
+
+So certifications are used to review user access
+
+Definiation : Reviewing user's access/entitlements is called certification(Access Review)
+or 
+Reviewing users entitlements is called certification (Access Review)
+					
+					
+--> Two catagories 
+  1. Periodic Certifications (Based on Frequency Weekly, Monthly, Anually )
+  2. Contineous Certification (Always runs )
+  
+  Certification Life Cycle
+  
+  1. Generation 		: During Generation Cetifications will generate. we have to specify what to certify, when to certify and who should certify.
+  2. Staging phase 		: This is a optional phase, We can enable or disable Staging Period. It allows us to preview or check certification.  
+  3. Active phase 		: During Active phase, Certifier will review the access. If Certifier finds access is appropriate, he will approve the access. If certifier finds access is inappropriate, he will revoke the access. 
+  4. challenge			: challenging the decision. This is optional phase. We didn't configure in our project. we can challeng the decision.
+  5. Revocation phase/	
+	 Remediation Phase 	: Revocations will complete in Remediation phase.
+
+------------------------
+----> Certification LIfe Cycle
+1. Generation (Configuraiton of certificaiton definition and all)
+2. Staging  (To Review how certification is generated)
+3. Active Period (Certifer will take appropriate decision, May approve or revoke )
+4. Challenge Period (challenging the decision, )
+5. Signoff (Once all decisions are completed reviwer has to Signoff)
+6. Remediation/Revocation  (Entitlement Revocation will happen)
+
+
+
+--> Types of Certification
+1. Manager Certification - Manger will review his direct reports wheather they have proper access or not? { Certifier/Reviewer = Manager }
+2. Application Owner Certification - App Owner will review all the accounts from that application. { certifier/Reviewer = Application Owner}
+3. Entitlement Owner Certification - Entitlement Owner Will review/certifiy the user access. { Certifier/Reviewer = Entitlement Owner} 
+
+4. Advanced Certification - Allows for creation of custom certifications based on Groups or Populations. {Certifier = Group Owner} 
+5. Role Membership Certification - Role Owner Will review/certifiy the user access. { Certifier = role Owner}
+6. Account Group Permissions - To Review the permissions of an Account Group.
+
+--->Generation Of Certification(Access Reviews)
+1.Basic			-	The Basic page allows the administrator to name Certification
+					set owner name 
+					What to certifiy 
+					when to certifiy
+2.Lifecycle		-	
+3.Notifications	-	
+4.Behavior		-
+5.Advanced		-
+
+Staging
+---------------------------
+--> Once Certification enter into staging you can't edit certificaiton.
+--> Staging period is to review how certifiction looks?
+
+Active Period
+-----------------------------
+-->ONce certifier signoff you can't change your decision
+--> Reassignment : Once Access Review(Certification)  reassigned original Reviewer can't take any decision
+					there will be no work item once certificaiton is reassigned
+--> Delegation   : Once Access Review(Certification)  delegated original Reviewer can take any decision, original review's decision is the final decision.
+					Even Access Review delegated still original reviewer can see certification items.
+-->Escalation : When Origianl reviewer doesn't take any decision for number of days, that access review will be escalated as per the configuration 
+
+---> PreDelegation : Certifcation will be delegated to the another reviwer as part of certification generation.
+
+	
+Life Cycle events : 
+--------------------------------------------------------------------------------------------------------
+Joiner 	: an employee who joined organisation.
+Leaver	: an employee who leaves organisation.
+Mover	: an employee who moves between deparments or change in his role.
+Rehire	: an employee who is going to rejoin the same organisation is called Rehire.	
+
+when life cycle events will trgger in SailPoint?
+when we run refresh identity cube task with options "proces events" and "provisioining assignments".
+
+When will joiner life cycle event will trigger?
+when an identitycube cretes for the first time in the identityWarehouse will trigger the Joiner Life Cycle event in the next Identity Refresh Task.
+
+mostly we use Joiner LIfe Cycle event to create Accounts on the Different Target Systems.
+
+When will leaver life cycle event will trigger?
+when an identitycube's identityAttribute inactive changes from false to true, then Leaver Life Cycle event will trgger in in the next Identity Refresh Task.
+
+Mostly we use Leaver Life Cycle Event to Disable/Delete accounts on the Different Target Systems.
+
+When will Rehire life cycle event will trigger?
+when an identitycube's identityAttribute inactive changes from true to false, then Rehire Life Cycle event will trgger in in the next Identity Refresh Task.
+
+Mostly we use Rehire Life Cycle Event to Enable accounts on the Different Target Systems.
+
+When will Mover life cycle event will trigger?
+When there is a change in Identity's department or jobtile or role then Mover life cycle event will trigger. we will configure required changes to the user accounts in the Target System.
+
+
+What is Business Process/Workflow?
+TBA
+
+Right 		-	These rights control access on the SailPoint UI.
+SailPoint object name SPRight
+Capability 	-	We can define Capability as set of SPRights.
+SailPoint object name is Capability
+				viewAdminConsole has three rights (task, provisioning and environment)
+Workgroup	-	We can define Workgroup as set of Capabilites and set of identities.
+
+
+
+
+
+
+
+
+	
+	
+	

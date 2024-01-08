@@ -1,0 +1,15 @@
+1. 	health Checkup 
+------------------------------------------------------------
+2.	Life Cycle Events not processed
+--------------------------------------
+3.	Identity Attributes not showing properly on cube level
+	Ticket (On ServiceNow): My name is Varun but it is comming "VARULNN", Please correct it.
+	We used to get Tickets : like first or last name or department Attibutes showing incorrectly on Identity cube
+	
+	Resolution : We have to check HR System Flat file. 
+	if it is Wrong in Flat file --> Please ask HR team to update it in HR Management System.
+	if it is Correct in Flat file--> We will notify them like it wil upate in couple of hours.
+	--------------------------------------------
+	
+3. 	Batch Request
+4. 	
