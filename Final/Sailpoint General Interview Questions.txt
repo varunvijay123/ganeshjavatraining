@@ -293,7 +293,3 @@ Java Questions
 21) What is the Deligation?
 12) what is DriverManager
 13) What is Connection 
-
-
-this line addded by Ganesh
-i am ganesh gani
