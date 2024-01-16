@@ -154,47 +154,130 @@ Connector Types
 			
 		Note:-Once certifier signoff you can't change your decision.
 19) Have you worked on Certification Rules?
+	Yeah i have worked on Certification rules like exclusion rule and predelegation rule. 
 
-20) 
+20) What is exclusion rule? what is the return type?
 
-21) Where will we use pre-delegation rule? Why do we use it?
+	20.1 what is itemsToExeclude ?
+	20.2 what is CertificationEntity
 
-	Pre-Delegation Rule runs during the certification generation and pre-delegated to new certifier. 
-	It returns String.
-22) What is Exclusion Rule?
+21) What is predelegation rule? what is the return type?
+	Pre-Delegation Rule runs during the certification generation and pre-delegated to new certifier. Using Predelegation rule we can also do reasssigment as well?
+	return type of predelegation rule is String.
+	
+22) How do you do Reassingment using Certification Rules? or How do you acheive reassignment in certification?
+Ans: To do Reassignment in certification we have to use Predelegation rule.
 
 23) In certification if something went wrong how will u recorrect it?
 	Once certification is generated SailPoint doesn't allow to make changes to the certification configuration. If we enable the staging phase we can cancel the campaign and generate a new campaign.
 
-24) If manager went into inactive position and he couldn't do his activities? How will u fix it?
-	We can reassign the Access Reviews to another person.
-	Or we can wait to escalation happen, then It escalates to managers manager automatically.
+24) If manager went into inactive position and he couldn't complete access reviews which assigned to him? what are the actions we can take on these Access Reviews?
+	Certification Owner can reassign the Access Reviews to another person.
+	Or 
+	we can wait to escalation happen, then It escalates to managers manager automatically.
 	
 25) How do you use Build Map Rule?
 
 26) How many connector rules do u have used? or worked on it? For which applications u have used?
-
+	Yeah we have different connector rules,  We have preiterate rule, post iterate rule and buildMap Rule.
+	
 27) What is pre-iterate rule? For which connector u will use? In which use case u have used?
 
-28) How you have done birth right Provisioning?
+28) What is BirthRight Provisioning ?
+	Accessing basic and mandatory things by defalut without asking any permission is called BirthRight Provisioning.
+	or
+	When an employee joins in the Enterprise. Employee needs some basic and mandatory access like accessing system, Email Access and etc....
+
+29) How you have done birth right Provisioning?
+	Yeah I have done BirthRight Provisioining. We have different ways to do BirthRight Provisioning. 
+	
+	different ways 
+	1. Joiner Life Cycle Event
+	2. RBAC Model 
+	3. Using quick links we can trigger Workflows to provisioin madatory access.
+	
+	I have configured BirthRight Provisioning using RBAC Model. 
+	
+	How do you setup BirthRight Provisioning using RBAC Model?
+	
+	I have created a Bussiness Role with Assignement rule as Match List. also added two IT Roles.
+	These IT Roles are added with Entitlements.
+	
+	29) what are different available options at Assigment Rule?
+	Matchlist, Filter, Script, Population and Rule
+	
 
 29) Manager forgot his password, u got requset from him to reset the passsword. Then how will u fix it? How many ways are there?
-
+	From Identity Warehouse we can reset password. or
+	Using Manage Account Quick Link we can reset Manager Password. or
+	I will request on behalf of my Manager to reset password.
+	
 30) Difference between build map rule and customized rule?
 
 31) How will u do self certifications?
+	we are not allowing self certifications in our environment, Certification Owner will reassing to appropriate person.
 
 32) provisioning policies- where, when we have to use?
+	In Application definition only have Provisioing Polices, we have different provisioing polices such as Create, Update, Disable, Enable and Delete.
+	Create - 
+
+33,What is provisoinig Plan?
+	Object representation of the request is called provisioning plan.
+	which includes AccountRequest, AttributeRequest, requestor and requestee information.
+
+33) What is AccountRequest?
+	AccountRequst is basically list of changes which requested on account, which includes attribute requests.
+	or 
+	AccountRequst is basically Request made to change account object is called AccountRequest.
+	We have different AccountRequest Types. These are Create, Modify, Enable, Disable, Lock, Unlock and Delete 
+	
+34) What is AttributeRequest?
+	AttributeRequst is basically requested attribute changes on attribute level.
+	or
+	AttributeRequst is basically Request made to change attribute value is called attributeRequest.
+
+	Requestor: The person who places request.
+	Requestee: The person to whom request raised
+
+	Provisoning Plan includes account Requst and 
+	Account Request includes attributeRequests
 
 
-33) How the schema attribute is populated? If I have added two more attributes then how or where it will be populated?
+33) How the Account schema attribute is populated? If I have added two more attributes then how or where it will be populated?
+	Attribute which added in the Account Schema will be populated when we run the Account Aggregation Task. From the Accounts tab we can see this value on any account.
 
 34) What is the importance of schema definition?
-It is a main step of integration.....
+	It is a main step of integration, It makes each account unique by having Unique identity Attribute. Schema also defines list of attribute that needs to be load from the Targated system.
 
+35) How the data is reflecting in the preview? Does it also load accounts into IIQ Database before aggregation?
+	Preview is Read Operation. When we click on preview button IIQ will read data from the Targated system and represents in the Preview but it will not load into IdentityIQ Database. 
 
-35) How the data is reflecting in preview into the IIQ before aggregation?
+36) What are the different ways to do Preview in IIQ?
+	Using Preview button in the Application definition and
+	From IIQ Console we can do preview using connectorDebug command.
+	commond - connectorDebug "App Name" iterate account
+	commond - connectorDebug "App Name" iterate group
+	
+37) Can we do Test Connection from IIQ Console?
+	Yes we can do 
+	connectorDebug "App Name" test
+	
+38) What is the difference between checkout and export commonds?
 
+	Export commond will export all the objects of the specified type. 
+	export -clean apps.xml Application
+	Checkout Commond will export only specified object.
+	checkout Application "HighJump One" HighJumpOne.xml -clean
+39) How do you export SailPoint Objects(Application, Rule, workflow, Role, Workgroup, TaskDefinition) ?
+	We have different ways to export Sailpoint Objects
+	1. Using Object Exporter Task.
+	2. Using IIQ console we can export sailpoint Objects - checkout "Sailpoint object Name" "fileName" -clean= id,created, modified
+	3. We can also copy object from debug page, but not recommended.
+
+37) what is the difference between Preview and Preview at IIQ Console?
+	In the Preview at application definition can able to see only 10 accounts.
+	In the Preview at IIQConsole we can see all the accounts from the application.
+	
 ->I wanted to create a cerification not based on manager or anything based but based on attribute i have to create certification. How will u create it?
 
 By populations or  by groups we will create and we will apply certifications.
@@ -226,7 +309,6 @@ By populations or  by groups we will create and we will apply certifications.
 ->What is synchronizede?
 
 
--> How many rules u have used?
 
 -> HOw to configure a workflow?
 
@@ -275,7 +357,7 @@ Workgroup	-	We can define Workgroup as set of Capabilites and set of identities.
 
 
 To-DO
-1. Certifications 
+1. Certification with Rules (exclusion rule and predelegation rule) and reminders.
 2. Provisioining Policy - HighJump
 3. Life Cycle Event Realtime Demo SDG
 
