@@ -1,4 +1,4 @@
-1)  How many types of tasks
+1) How many types of tasks?
 	We have different types of tasks, 
 	WE have account aggregation task to aggregate accounts.
 	WE have groups aggregation task to aggregate groups.
@@ -16,12 +16,12 @@
 		--Moves the campaign phase to different phase, if time period expires for that particular phases
 		--close campaigns(Certifications)
 		--Prune aged sailpoint objects such as taskresults, provisioningTransactions, syslog
-	1.4 What are Aged SailPoint Objects
+	1.4 What are Aged SailPoint Objects?
 		--Objects which are older than Object Expiration value in IdentityIQ Configureation of Global Settings.
 	1.5 Where did you configure max days for TaskResults, provisioningTransactions and syslog?
 		--From the global settings using IdentityIQ configuration we can set the Object Expiraton. if we set TaskResults/provisioningTransactions/syslog to 100 Days, PM task will delete TaskResults/provisioningTransactions/syslog which are created gretet than 100 days.
 	
-2)  can you explain rules?
+2) can you explain rules?
 	We have different types of rules available in the SailPoint such as 
 	preiterate rule, 
 	build map rule, 
@@ -32,15 +32,15 @@
 	Post Iterate Rule.
 	Also we have certification Rules and workflow rules.
 
-3)  what is schema?
+3) what is schema?
 	Schema is two types
 	Account Schema - List of attributes which represents Account Object is called Account Schema.
 	Groups Schema - List of attributes which represents Group Object is called Group Schema.
-4)  If you make any changes in target system will it get reflected in iiq?
+4) If you make any changes in target system will it get reflected in iiq?
 	Yeah it will reflect in identityIQ, How?
 	By using aggregation task all the updates will be loaded into SailPoint IdentityIQ.
 	
-5)  What is role mining?
+5) What is role mining?
 	Role mining is nothing but creation of rules using SailPont Role Mining Concept.
 	We have IT Role Mining to create IT Roles.
 	We have Bussiness Role Mining to create Bussiness Roles.
@@ -48,8 +48,7 @@
 	5.1 How do you mine roles?
 	It is based on IdentityAttrbute. 
 	
-
-6)  How many ways we can create identities?
+6) How many ways we can create identities?
 	We can create identities in different ways
 	By Running Authoritative aggregation identites will be created in the SailPoint idenityIQ.
 	By using Create Identity Quick Link we can create.
@@ -59,77 +58,78 @@
 	
 	When correlation fails uncorrelated identity cubes will be created in the system.
 	
-7)  Lifecycle events?
+7) Lifecycle events?
 	We have different Life Cycle Events
-	1. Joiner - an employee who is onboarding/joining the organisation.
-	2. Mover  - an employee who is changing Departments/change manager in the organisation.
-	3. Leaver - an employee who is offboarding/leaving the organisation.
-	4. Rehire - an employee who rejoing the same organisation is called Rehire.
+	 1. Joiner - an employee who is onboarding/joining the organisation.
+	 2. Mover  - an employee who is changing Departments/change manager in the organisation.
+	 3. Leaver - an employee who is offboarding/leaving the organisation.
+	 4. Rehire - an employee who rejoing the same organisation is called Rehire.
 	
 	7.1 when life cycle events will trgger in SailPoint?
-	when we run refresh identity cube task with options "proces events" and "provisioining assignments" are enabled.
+	when we run refresh identity cube task with options "proces events" and "provisioning assignments" are enabled.
 
 	7.2 When will joiner life cycle event will trigger?
 	when an identitycube creates for the first time in the identityWarehouse, it will trigger the Joiner Life Cycle event in the next Identity Refresh Task.
 	mostly we use Joiner LIfe Cycle event to create Accounts on the Different Target Systems.
 	
-8) What is Authoritative Application
+8) What is Authoritative Application?
    The  authoritative application is the main repository for employee information for your enterprise, for example a human resources application.
    It is the data source from which majority of identity cubes are created.
 	
-9)  What is LCM?
+9) What is LCM?
 	LCM stands for Life Cycle Manager. 
 	A component in the SailPoint IdentityIQ, 
 	Life Cycle Module (LCM) provides Life cycle Events such as joiner,leaver, mover and rehire.
 	It also provides Manage Access and Self Service Management.
 
-
 10) What is connector?
+     A connector is a software component used to connect to the target system.
+     Ex: Delimited file connector, JDBC (java Database connectivity), Workday Connector, ACtive DIrectory, etc
+     We have around 70+ connnectors in SailPoint idnetityIQ.
 
-A connector is a software component used to connect to the target system.
-Ex: Delimited file connector, JDBC (java Database connectivity), Workday Connector, ACtive DIrectory, etc
-We have around 70+ connnectors in SailPoint idnetityIQ.
+     Connector Types
+     1. Not well Defined Connector (Disconnected Applications)
+	    examples are Delimited connector , JDBC Connector, etc ............... 
+	    -Schema is Empty - we have to manually create schema
+	    -Provisioning Frame work - doesn't support. we have to mange manually 
+     2. Well Defined connector (Connected Applications)
+	    examples are Active Directory, LDAP, Workday,OpenLDAP  etc...... 
+	    -Schema comes by default
+	     -Provisioning Frame work by default
 
-Connector Types
-1. Not well Defined Connector (Disconnected Applications)
-	examples are Delimited connector , JDBC Connector, etc ............... 
-	-Schema is Empty - we have to manually create schema
-	-Provisioning Frame work - doesn't support. we have to mange manually 
-2. Well Defined connector (Connected Applications)
-	examples are Active Directory, LDAP, Workday,OpenLDAP  etc...... 
-	-Schema comes by default
-	-Provisioning Frame work by default
+11) What is native Rules?
+     Rule which are responsible to make changes in the Target Application, Target Application Specific Rules.
+	 For Example, In SailPoint We have Active Directory Connector which supports Native Rules.
+	 we have after create rule, which will be invoked after account creation in Active Directory. 
+	 In After Create Rule we can trigger powershell methods to execute on AD Side.
 
-11)  What is native Rules?
-    Rule which are responsible to make changes in the Target Application, Target Application Specific Rules.
-	For Example, In SailPoint We have Active Directory Connector which supports Native Rules.
-	we have after create rule, which will be invoked after account creation in Active Directory. 
-	In After Create Rule we can trigger powershell methods to execute on AD Side.
 12) How you import Entitlements in iiq?
-	We can import Entitlements in Sailpoint by using import option which is available in Entitlement Catalog.
+	 We can import Entitlements in Sailpoint by using import option which is available in Entitlement Catalog.
 	
 	11.1 How do you create Entitlements in the SailPoint?
 	Using Group Aggregation task we can load Entitlements into the SailPoint IdentityIQ.
 	11.2 How do you create Entitlements in the Target System?
-	By Using "Add New Entitlement" Option in the Entitlement Catalog. Provisioing plan will generate and given to the "LCM Provisioning" workflow to create in the Target System.
-13) what is workflow
-	Workflows within IdentityIQ are called Bussiness Processes. Workflow consists of different steps which are responsilble for drive the provisioning plan with associated approvals and to complete the provisioning.
+	By Using "Add New Entitlement" Option in the Entitlement Catalog. Provisioning plan will generate and given to the "LCM Provisioning" workflow to create in the Target System.
+
+13) what is workflow?
+	 Workflows within IdentityIQ are called Bussiness Processes. Workflow consists of different steps which are responsilble for drive the provisioning plan with associated approvals and to complete the provisioning.
+
 14) How do you create custom Connector Or any unknow Question?
-	I didn't get chance to work on Custom Connector, if i get opportunity to work, i am happy to work on that item.
+	 I didn't get chance to work on Custom Connector, if i get opportunity to work, i am happy to work on that item.
+
 15) what is the provisioning policy?
 	Provisioning Policy is nothing but a form, which provides the attributes which are mandatory to complete the Provisioning.
 	
 16) what is certifications? Why do we go for certifications?
-
-	Definiation : Reviewing user's access/entitlements is called certification(Access Review)
-	or 
-	Reviewing users entitlements is called certification (Access Review)
-	-->	To Review the user access.
-	16.1 Catagories of Certfication
+     Definiation : Reviewing user's access/entitlements is called certification(Access Review)
+	 or 
+	 Reviewing users entitlements is called certification (Access Review)
+	 -->	To Review the user access.
+	  16.1 Catagories of Certfication
 			1. Periodic Certifications (Based on Frequency Weekly, Monthly, Anually )
 			2. Contineous Certification (Always runs )
-	16.2 What are different types of Campaigns
-		We have different types of Certifications
+	  16.2 What are different types of Campaigns
+		    We have different types of Certifications
 			1. Targeted Certification  
 			2. Manager Certification - Manger will review his direct reportees access wheather they have proper access or not? { Certifier/Reviewer = Manager }
 			3. Application Owner Certification - App Owner will review all the accounts from that application. { certifier/Reviewer = Application Owner}
@@ -153,12 +153,13 @@ Connector Types
 		-->	Escalation 		: When Origianl reviewer doesn't take any decision for number of days, that access review will be escalated as per the configuration. 
 			
 		Note:-Once certifier signoff you can't change your decision.
+
 19) Have you worked on Certification Rules?
 	Yeah i have worked on Certification rules like exclusion rule and predelegation rule. 
 
 20) What is exclusion rule? what is the return type?
 
-	20.1 what is itemsToExeclude ?
+	20.1 what is itemsToExclude ?
 	20.2 what is CertificationEntity
 
 21) What is predelegation rule? what is the return type?
@@ -166,7 +167,7 @@ Connector Types
 	return type of predelegation rule is String.
 	
 22) How do you do Reassingment using Certification Rules? or How do you acheive reassignment in certification?
-Ans: To do Reassignment in certification we have to use Predelegation rule.
+     Ans: To do Reassignment in certification we have to use Predelegation rule.
 
 23) In certification if something went wrong how will u recorrect it?
 	Once certification is generated SailPoint doesn't allow to make changes to the certification configuration. If we enable the staging phase we can cancel the campaign and generate a new campaign.
@@ -175,6 +176,10 @@ Ans: To do Reassignment in certification we have to use Predelegation rule.
 	Certification Owner can reassign the Access Reviews to another person.
 	Or 
 	we can wait to escalation happen, then It escalates to managers manager automatically.
+
+25)	How will u do self certifications?
+	we are not allowing self certifications in our environment, Certification Owner will reassing to appropriate person.
+
 	
 25) How do you use Build Map Rule?
 
@@ -183,18 +188,20 @@ Ans: To do Reassignment in certification we have to use Predelegation rule.
 	
 27) What is pre-iterate rule? For which connector u will use? In which use case u have used?
 
+28) Difference between build map rule and customized rule?
+
 28) What is BirthRight Provisioning ?
 	Accessing basic and mandatory things by defalut without asking any permission is called BirthRight Provisioning.
 	or
 	When an employee joins in the Enterprise. Employee needs some basic and mandatory access like accessing system, Email Access and etc....
 
 29) How you have done birth right Provisioning?
-	Yeah I have done BirthRight Provisioining. We have different ways to do BirthRight Provisioning. 
+	Yeah I have done BirthRight Provisioning. We have different ways to do BirthRight Provisioning. 
 	
 	different ways 
 	1. Joiner Life Cycle Event
 	2. RBAC Model 
-	3. Using quick links we can trigger Workflows to provisioin madatory access.
+	3. Using quick links we can trigger Workflows to provisioing madatory access.
 	
 	I have configured BirthRight Provisioning using RBAC Model. 
 	
@@ -203,35 +210,34 @@ Ans: To do Reassignment in certification we have to use Predelegation rule.
 	I have created a Bussiness Role with Assignement rule as Match List. also added two IT Roles.
 	These IT Roles are added with Entitlements.
 	
-	29) what are different available options at Assigment Rule?
+29) what are different available options at Assignment Rule?
 	Matchlist, Filter, Script, Population and Rule
 	
-
-29) Manager forgot his password, u got requset from him to reset the passsword. Then how will u fix it? How many ways are there?
+30) Manager forgot his password, u got requset from him to reset the passsword. Then how will u fix it? How many ways are there?
 	From Identity Warehouse we can reset password. or
 	Using Manage Account Quick Link we can reset Manager Password. or
 	I will request on behalf of my Manager to reset password.
 	
-30) Difference between build map rule and customized rule?
-
-31) How will u do self certifications?
-	we are not allowing self certifications in our environment, Certification Owner will reassing to appropriate person.
-
-32) provisioning policies- where, when we have to use?
-	In Application definition only have Provisioing Polices, we have different provisioing polices such as Create, Update, Disable, Enable and Delete.
-	Create - 
-
-33,What is provisoinig Plan?
+33) provisioning policies- where, when we have to use?
+	In Application definition only have provisioning Polices, we have different provisioning polices such as Create, Update, Disable, Enable and Delete.
+	 Create - If requestee dont have an account,sailpoint will generate accountrequest as create by considering create provisioning policy
+	 Modify - When user requested for new entitlement
+	 Modify - When user requested for removal of entitlement
+	 Disable - When we need to disable account
+	 Enable - When we need to enable account
+	 Delete - When we need to delete account
+	 
+34) What is provisioning Plan?
 	Object representation of the request is called provisioning plan.
 	which includes AccountRequest, AttributeRequest, requestor and requestee information.
 
-33) What is AccountRequest?
+35) What is AccountRequest?
 	AccountRequst is basically list of changes which requested on account, which includes attribute requests.
 	or 
 	AccountRequst is basically Request made to change account object is called AccountRequest.
 	We have different AccountRequest Types. These are Create, Modify, Enable, Disable, Lock, Unlock and Delete 
 	
-34) What is AttributeRequest?
+36) What is AttributeRequest?
 	AttributeRequst is basically requested attribute changes on attribute level.
 	or
 	AttributeRequst is basically Request made to change attribute value is called attributeRequest.
@@ -239,42 +245,42 @@ Ans: To do Reassignment in certification we have to use Predelegation rule.
 	Requestor: The person who places request.
 	Requestee: The person to whom request raised
 
-	Provisoning Plan includes account Requst and 
+	provisioning Plan includes account Requst and 
 	Account Request includes attributeRequests
 
-
-33) How the Account schema attribute is populated? If I have added two more attributes then how or where it will be populated?
+37) How the Account schema attribute is populated? If I have added two more attributes then how or where it will be populated?
 	Attribute which added in the Account Schema will be populated when we run the Account Aggregation Task. From the Accounts tab we can see this value on any account.
 
-34) What is the importance of schema definition?
+38) What is the importance of schema definition?
 	It is a main step of integration, It makes each account unique by having Unique identity Attribute. Schema also defines list of attribute that needs to be load from the Targated system.
 
-35) How the data is reflecting in the preview? Does it also load accounts into IIQ Database before aggregation?
+39) How the data is reflecting in the preview? Does it also load accounts into IIQ Database before aggregation?
 	Preview is Read Operation. When we click on preview button IIQ will read data from the Targated system and represents in the Preview but it will not load into IdentityIQ Database. 
 
-36) What are the different ways to do Preview in IIQ?
+40) What are the different ways to do Preview in IIQ?
 	Using Preview button in the Application definition and
 	From IIQ Console we can do preview using connectorDebug command.
 	commond - connectorDebug "App Name" iterate account
 	commond - connectorDebug "App Name" iterate group
 	
-37) Can we do Test Connection from IIQ Console?
+41) Can we do Test Connection from IIQ Console?
 	Yes we can do 
 	connectorDebug "App Name" test
 	
-38) What is the difference between checkout and export commonds?
+42) What is the difference between checkout and export commonds?
 
 	Export commond will export all the objects of the specified type. 
 	export -clean apps.xml Application
 	Checkout Commond will export only specified object.
 	checkout Application "HighJump One" HighJumpOne.xml -clean
-39) How do you export SailPoint Objects(Application, Rule, workflow, Role, Workgroup, TaskDefinition) ?
+
+43) How do you export SailPoint Objects(Application, Rule, workflow, Role, Workgroup, TaskDefinition) ?
 	We have different ways to export Sailpoint Objects
 	1. Using Object Exporter Task.
 	2. Using IIQ console we can export sailpoint Objects - checkout "Sailpoint object Name" "fileName" -clean= id,created, modified
 	3. We can also copy object from debug page, but not recommended.
 
-37) what is the difference between Preview and Preview at IIQ Console?
+44) what is the difference between Preview and Preview at IIQ Console?
 	In the Preview at application definition can able to see only 10 accounts.
 	In the Preview at IIQConsole we can see all the accounts from the application.
 	
@@ -358,7 +364,7 @@ Workgroup	-	We can define Workgroup as set of Capabilites and set of identities.
 
 To-DO
 1. Certification with Rules (exclusion rule and predelegation rule) and reminders.
-2. Provisioining Policy - HighJump
+2. provisioning Policy - HighJump
 3. Life Cycle Event Realtime Demo SDG
 
 Java
